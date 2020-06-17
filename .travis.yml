@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t monica/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  -  docker run -e CI=true monica/react-test npm test -- --coverage
+  
+after_success:
+  - docker build -t monica/multi-client ./client
+  - docker build -t monica/multi-nginx ./nginx
+  - docker build -t monica/multi-server ./server
+  - docker build -t monica/multi-worker ./worker
