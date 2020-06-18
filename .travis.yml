@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t monica/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t 7262083407/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  -  docker run -e CI=true moni-github/react-test npm test -- --coverage
+  -  docker run -e CI=true 7262083407/react-test npm test -- --coverage
   
 after_success:
-  - docker build -t monica/multi-client ./client
-  - docker build -t monica/multi-nginx ./nginx
-  - docker build -t monica/multi-server ./server
-  - docker build -t monica/multi-worker ./worker
+  - docker build -t 7262083407/multi-client ./client
+  - docker build -t 7262083407/multi-nginx ./nginx
+  - docker build -t 7262083407/multi-server ./server
+  - docker build -t 7262083407/multi-worker ./worker
   
   -echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   
-  -docker push monica/multi-client
-  -docker push monica/multi-nginx
-  -docker push monica/multi-server
-  -docker push monica/multi-worker
+  -docker push 7262083407/multi-client
+  -docker push 7262083407/multi-nginx
+  -docker push 7262083407/multi-server
+  -docker push 7262083407/multi-worker
