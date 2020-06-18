@@ -13,3 +13,10 @@ after_success:
   - docker build -t monica/multi-nginx ./nginx
   - docker build -t monica/multi-server ./server
   - docker build -t monica/multi-worker ./worker
+  
+  -echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
+  -docker push monica/multi-client
+  -docker push monica/multi-nginx
+  -docker push monica/multi-server
+  -docker push monica/multi-worker
